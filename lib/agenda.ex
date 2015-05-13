@@ -8,7 +8,7 @@ defmodule Agenda do
 
     children = [
       # Define workers and child supervisors to be supervised
-      # worker(Agenda.Worker, [arg1, arg2, arg3])
+      worker(Agenda.Worker, [:ok])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -16,4 +16,7 @@ defmodule Agenda do
     opts = [strategy: :one_for_one, name: Agenda.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  defdelegate add_schedule(schedule), to: Agenda.Worker
+  defdelegate clear_schedule, to: Agenda.Worker
 end

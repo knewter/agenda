@@ -22,4 +22,9 @@ defmodule Agenda.Schedule do
     ]
     |> Enum.all?
   end
+
+  @spec execute_command(Agenda.Schedule) :: any
+  def execute_command(%Agenda.Schedule{command: command}) do
+    spawn(fn() -> Code.eval_quoted(command) end)
+  end
 end

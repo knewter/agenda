@@ -1,1 +1,2 @@
-map ,t :!mix test<cr>
+map ,t :!mix test --exclude slow:true<cr>
+map ,T :!mix test<cr>
